@@ -11,10 +11,12 @@ public class Main extends JFrame{
 		super("2 PLAYER PONG GAME");
 		setSize(WIDTH, HEIGHT);
 		Game play = new Game();
-		//((Component) play).setFocusable(true);
+		((Component) play).setFocusable(true);
 		Color ivory = new Color(255,255,240);
+		//sets the new color. Think of the computer picking up a pen
+		//g2d.setColor(ivory);
 		setBackground(ivory);
-		//getContentPane().add(play);
+		getContentPane().add(play);
 		
 		
 		setVisible(true);
