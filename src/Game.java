@@ -17,6 +17,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private Pictures background;
 	private boolean start;
 	private Sound p2;
+	private char screen;
 
 	private int score;
 	private boolean collide;
@@ -44,11 +45,106 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		background= new Pictures ("background.png", 0,0, 800, 600);
 		
 		start = false;
+	}
 		
 		
 		//collide=false;
-		
+		public void screen(Graphics g2d) {
+			System.out.println(screen);
+			switch(screen) {
+		case 'S':
+			
+			drawStartScreen(g2d);
+			
+			break;
+			
+		case 'M':
+
+			g2d.drawImage(new ImageIcon(background.getPic()).getImage(), background.getX(), background.getY(), background.getwidth(), background.getheight() , this);
+
+
+			
+			g2d.fillOval(ball.getX(), ball.getY(), ball.getwidth(), ball.getheight());
+
+			
+			g2d.fillRect(10, player.getY(), player.getwidth(), player.getheight());
+			g2d.fillRect(750, player2.getY(), player2.getwidth(), player2.getheight());
+
+			
+			
+			
+			g2d.setColor(Color.BLACK);
+			g2d.setFont(new Font("",Font.BOLD, 50) );
+			g2d.drawString(new DecimalFormat("#0.00").format(currtime1),350,550);
+			
+			if (start) {
+			currtime1= (System.currentTimeMillis()-time1)/1000;
 			}
+			
+			g2d.setFont(new Font("chiller",Font.BOLD, 30) );
+			g2d.drawString("SCORE 1: "+player.getScore(), 150, 30);
+			g2d.drawString("SCORE 2: "+player2.getScore(), 500, 30);
+
+			if (ball.Collision(player)) {
+				p.playmusic("Pong Sound Effect.wav");
+
+				
+				move();
+
+			}
+			
+			else if (ball.Collision(player2)) {
+				p.playmusic("Pong Sound Effect.wav");
+
+				move();
+
+			}
+			
+			
+			else if (ball.getX()<31) {
+				ball.setDx(0);
+				ball.setDy(0);
+				ball.setX(365);
+				ball.setY(300);
+
+				player2.setScore(1);
+				g2d.setColor(Color.blue);
+				g2d.setFont(new Font("chiller", Font.BOLD,25) );
+				start = false;
+				//g2d.drawString("GAME OVER", 300, 300);
+			} 
+			
+			else if (ball.getX()>720) {
+				ball.setDx(0);
+				ball.setDy(0);
+				ball.setX(365);
+				ball.setY(300);
+
+				player.setScore(1);
+				g2d.setColor(Color.blue);
+				g2d.setFont(new Font("chiller", Font.BOLD,25) );
+				//g2d.drawString("GAME OVER", 300, 300);
+				start = false;
+
+			}
+				
+			else move();
+			
+			if (player.getScore() > 4 ) { 
+				g2d.setColor(Color.RED);
+				g2d.drawString("Player 1 Wins!!!", 350, 150);
+
+			}
+			else if (player2.getScore() > 4) {
+				g2d.setColor(Color.RED);
+				g2d.drawString("Player 2 Wins!!!", 350, 150);
+
+			}
+			
+			break;
+			
+			}
+		}
 
 	public void run() {
 		try {
@@ -76,88 +172,8 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		//START CODING GRAPHICS HERE
 		
 
+		screen(g2d);
 
-		
-		g2d.drawImage(new ImageIcon(background.getPic()).getImage(), background.getX(), background.getY(), background.getwidth(), background.getheight() , this);
-
-
-		
-		g2d.fillOval(ball.getX(), ball.getY(), ball.getwidth(), ball.getheight());
-
-		
-		g2d.fillRect(10, player.getY(), player.getwidth(), player.getheight());
-		g2d.fillRect(750, player2.getY(), player2.getwidth(), player2.getheight());
-
-		
-		
-		
-		g2d.setColor(Color.BLACK);
-		g2d.setFont(new Font("",Font.BOLD, 50) );
-		g2d.drawString(new DecimalFormat("#0.00").format(currtime1),350,550);
-		
-		if (start) {
-		currtime1= (System.currentTimeMillis()-time1)/1000;
-		}
-		
-		g2d.setFont(new Font("chiller",Font.BOLD, 30) );
-		g2d.drawString("SCORE 1: "+player.getScore(), 150, 30);
-		g2d.drawString("SCORE 2: "+player2.getScore(), 500, 30);
-
-		if (ball.Collision(player)) {
-			p.playmusic("Pong Sound Effect.wav");
-
-			
-			move();
-
-		}
-		
-		else if (ball.Collision(player2)) {
-			p.playmusic("Pong Sound Effect.wav");
-
-			move();
-
-		}
-		
-		
-		else if (ball.getX()<31) {
-			ball.setDx(0);
-			ball.setDy(0);
-			ball.setX(365);
-			ball.setY(300);
-
-			player2.setScore(1);
-			g2d.setColor(Color.blue);
-			g2d.setFont(new Font("chiller", Font.BOLD,25) );
-			start = false;
-			//g2d.drawString("GAME OVER", 300, 300);
-		} 
-		
-		else if (ball.getX()>720) {
-			ball.setDx(0);
-			ball.setDy(0);
-			ball.setX(365);
-			ball.setY(300);
-
-			player.setScore(1);
-			g2d.setColor(Color.blue);
-			g2d.setFont(new Font("chiller", Font.BOLD,25) );
-			//g2d.drawString("GAME OVER", 300, 300);
-			start = false;
-
-		}
-			
-		else move();
-		
-		if (player.getScore() > 4 ) { 
-			g2d.setColor(Color.RED);
-			g2d.drawString("Player 1 Wins!!!", 350, 150);
-
-		}
-		else if (player2.getScore() > 4) {
-			g2d.setColor(Color.RED);
-			g2d.drawString("Player 2 Wins!!!", 350, 150);
-
-		}
 		
 			
 			
@@ -171,6 +187,15 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		player2.keymove();
 		player.keymove();
 
+	}
+	
+	public void drawStartScreen(Graphics g2d) {
+		//create start screen
+		g2d.setFont(new Font("Broadway", Font.BOLD, 50));
+		g2d.setColor(Color.white);
+		g2d.drawString("Welcome Retro Pong", 200, 400);
+		//g2d.drawString("Press B to begin", 200, 600);
+		g2d.drawString("Select the game you want to play!", 200, 800);
 	}
 	
 	public void keyTyped(KeyEvent e) {
@@ -217,10 +242,12 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
 			
 		}                 
+		/*
 		if(key == 66) {
 			ball.setDx(3);
 			ball.setDy(3);
 		}
+		*/
 		if(key == 86) {
 			ball.setH(100);
 			ball.setW(100);
@@ -236,6 +263,11 @@ public class Game extends JPanel implements Runnable, KeyListener{
 			ball.setH(50);
 			
 		}
+		
+		if (key==66) {
+			screen ='M';
+		}
+
 		
 		
 	}

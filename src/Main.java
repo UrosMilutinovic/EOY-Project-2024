@@ -9,13 +9,14 @@ public class Main extends JFrame{
 	
 	public Main () {
 		super("2 PLAYER PONG GAME");
-		setSize(WIDTH, HEIGHT);
+		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
+		//setSize(WIDTH, HEIGHT);
 		Game play = new Game();
 		((Component) play).setFocusable(true);
-		Color ivory = new Color(255,255,240);
+		Color RoyalBlue = new Color(22,13,193);
 		//sets the new color. Think of the computer picking up a pen
 		//g2d.setColor(ivory);
-		setBackground(ivory);
+		setBackground(RoyalBlue);
 		getContentPane().add(play);
 		
 		
@@ -25,7 +26,7 @@ public class Main extends JFrame{
 	}
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {  
 		Main run = new Main();
 		
 
