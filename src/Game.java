@@ -27,6 +27,8 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
 	private int score;
 	private boolean collide;
+	private ArrayList <Brick> BrickList;
+
 	
 	public Game() {
 		back=null;
@@ -48,9 +50,41 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		background= new Pictures ("background.png", 0,0, 800, 600);
 		
 		start = false;
+		
+		//----------------------------------------------------------------------------------------
+		
+		len = BrickList.size();
+		len2 = 1;
+		BrickList = setBricks();
+
+		
+		
+		
 	}
 		
+	private ArrayList<Brick> setBricks() {
+		// TODO Auto-generated method stub
+		ArrayList <Brick> temp = new ArrayList <Brick>();
+		int y=0;	
+		for(int i=0; i<5; i++) {
+			int x=20;
+			for (int j=0; j<8; j++) {
+			temp.add( new Brick(x,y,new Color(getRandNum(),getRandNum(),getRandNum() ) ));
+			x+=120;
+			}
+			y+=70;
+
+		}
 		
+		return temp;
+	}
+		
+	
+public int getRandNum() {
+	return (int)(Math.random()*255)+1;
+}
+	
+	
 		//collide=false;
 		public void screen(Graphics g2d) {
 			System.out.println(screen);
@@ -58,10 +92,15 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		case 'S':
 			
 			drawStartScreen(g2d);
+			g2d.drawString("KEY" + key, 340, 600);
+
 			
 			break;
 			
 		case 'M':
+
+			
+			g2d.drawString("KEY" + key, 340, 600);
 
 			g2d.drawImage(new ImageIcon(background.getPic()).getImage(), background.getX(), background.getY(), background.getwidth(), background.getheight() , this);
 
