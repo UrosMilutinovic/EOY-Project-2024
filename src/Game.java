@@ -18,12 +18,15 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private boolean start;
 	private Sound p2;
 	private char screen;
+	private int key;
+	private Sound m;
+	private Sound m2;
+	private int len;
+	private int len2;
+	private int lives;
 
 	private int score;
 	private boolean collide;
-
-		
-	private int key;
 	
 	public Game() {
 		back=null;
@@ -194,7 +197,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		g2d.setFont(new Font("Broadway", Font.BOLD, 50));
 		g2d.setColor(Color.white);
 		g2d.drawString("Welcome Retro Pong", 200, 400);
-		//g2d.drawString("Press B to begin", 200, 600);
+		g2d.drawString("Press B to begin", 200, 600);
 		g2d.drawString("Select the game you want to play!", 200, 800);
 	}
 	
