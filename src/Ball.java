@@ -12,13 +12,15 @@ public class Ball {
 	private int dy;
 	private boolean movert;
 	private boolean movedn;
+	private boolean moveup;
+
 	private Color c;
 	
 
 
 public Ball() {
 	x=300;
-	y=300;
+	y=600;
 	width=30;
 	height=40;
 	dx=1;
@@ -41,6 +43,7 @@ public Ball(int x1, int y1, int w, int h, int dx1, int dy1, Color c1) {
 	
 	movert= true;
 	movedn=true;
+	moveup = true;
 	
 }
 public void setmovert() {
@@ -48,15 +51,20 @@ public void setmovert() {
 }
 
 
-public boolean Collision(Paddle b) {
-	if(getX()+getwidth()>=b.getX() && getX()<=b.getX()+b.getwidth() && getY()+getheight()>=b.getY() && getY()<=b.getY() + b.getheight()) {
-		setmovert();
+public boolean Collision(Paddle l) {
+	if(getX()+getW()>=l.getX() && getX()<=l.getX()+l.getW() && getY()+getH()>=l.getY() && getY()<=l.getY() + l.getH()) {
+		setmoveUp();
 		return true;
 
 	}
 	return false;
 	
 }
+
+
+
+
+
 
 public void bounce() {
 	if (movert) {
@@ -67,24 +75,22 @@ public void bounce() {
 	if (x<0) {
 		movert=true;
 	}
-	if(x>800-60) {
+	if(x>1000-60) {
 		movert=false;
 	}
 		
-	if (movedn) 
-		{y=y+dy;
+	if (moveup) 
+		{y=y-dy;
 	}
-	else y-=dy;
+	else y+=dy;
 	
 	
 	if(y<0) {
-		movedn=true;
+		moveup=false;
 	}
-	if (y>600-80) {
-		movedn=false;
+	if (y>750-80) {
+		moveup=true;
 	}
-	
-		
 }
 
 public int getX() {
@@ -107,6 +113,9 @@ public int getDX() {
 	return dx;
 }
 
+public int getDY() {
+	return dy;
+}
 
 public void setDx(int c) {
 dx=c;
@@ -115,10 +124,10 @@ dx=c;
 public void setDy(int c) {
 	dy=c;
 }
-public int getwidth() {
+public int getW() {
 	return width;
 }
-public int getheight() {
+public int getH() {
 	return height;
 }
 
@@ -136,7 +145,10 @@ public void setH(int c) {
 	
 }
 
-
+public void setmoveUp() {
+	moveup=!moveup;
+	
+}
 
 /*
 public int getColor
@@ -144,6 +156,7 @@ public int getColor
 	return color;
 }
 */
+
 
 
 

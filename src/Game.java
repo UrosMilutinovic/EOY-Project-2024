@@ -53,7 +53,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		
 		//----------------------------------------------------------------------------------------
 		
-		len = BrickList.size();
+		len = 0;
 		len2 = 1;
 		BrickList = setBricks();
 
@@ -106,11 +106,11 @@ public int getRandNum() {
 
 
 			
-			g2d.fillOval(ball.getX(), ball.getY(), ball.getwidth(), ball.getheight());
+			g2d.fillOval(ball.getX(), ball.getY(), ball.getW(), ball.getH());
 
 			
-			g2d.fillRect(10, player.getY(), player.getwidth(), player.getheight());
-			g2d.fillRect(750, player2.getY(), player2.getwidth(), player2.getheight());
+			g2d.fillRect(10, player.getY(), player.getW(), player.getH());
+			g2d.fillRect(750, player2.getY(), player2.getW(), player2.getH());
 
 			
 			
@@ -118,6 +118,7 @@ public int getRandNum() {
 			g2d.setColor(Color.BLACK);
 			g2d.setFont(new Font("",Font.BOLD, 50) );
 			g2d.drawString(new DecimalFormat("#0.00").format(currtime1),350,550);
+			System.out.println(key);
 			
 			if (start) {
 			currtime1= (System.currentTimeMillis()-time1)/1000;
@@ -185,7 +186,58 @@ public int getRandNum() {
 			
 			break;
 			
-			}
+			
+			case 'P':
+				
+				len = BrickList.size();
+
+				
+				g2d.setColor(Color.BLUE);
+				g2d.setFont(new Font ("Times New Roman", Font.BOLD, 50));
+				g2d.drawString("Lives: " + lives, 60, 670);
+				
+				g2d.fillOval(ball.getX(), ball.getY(), ball.getW(), ball.getH());
+
+				for(Brick b: BrickList) {
+					g2d.setColor(b.getCol());
+					g2d.fillRect(b.getX(), b.getY(), b.getW(), b.getH());
+				}
+				
+				collision(); 
+				if (ball.Collision(player)) {
+					//m.playmusic("Pong Sound Effect.wav");
+
+					move();
+
+				}
+				
+
+
+				g2d.fillRect(player.getX(), player.getY(), player.getW(), player.getH());
+
+				
+				move();
+				
+				if (ball.getY()>660) {
+					lives--;
+					ball.setX(430);
+					ball.setY(500);
+					ball.setDx(0);
+					ball.setDy(0);
+					ball.setmoveUp();
+				}
+				
+				if (lives == 0) {
+					g2d.drawString("YOU LOSE", 300, 500);
+				} else if (len2 == 0) {
+					g2d.drawString("YOU WIN", 300, 500);
+					ball.setDx(0);
+					ball.setDy(0);
+
+				}
+				
+			break;	
+			}	
 		}
 
 	public void run() {
@@ -224,6 +276,21 @@ public int getRandNum() {
 	twoDgraph.drawImage(back, 0, 0, null);
 	}
 
+	public boolean collision() {
+		for(int i=0; i<BrickList.size(); i++) {
+			if(ball.getY()<= (BrickList.get(i).getY()) && ball.getX()<=(BrickList.get(i).getX() + BrickList.get(i).getW()) && ball.getX()+ball.getW()>=BrickList.get(i).getX())  {
+				BrickList.remove(i);
+				System.out.println("collision");
+				ball.setmoveUp();
+				len2 = getLength();
+				//ball.setmovert();
+				return true;
+			}
+		}
+		return false;
+		
+}
+	
 	public void move() {
 		ball.bounce();
 		player2.keymove();
@@ -309,8 +376,20 @@ public int getRandNum() {
 		if (key==66) {
 			screen ='M';
 		}
-
 		
+
+		if (key==37) {
+			player.setDx(-3);
+		
+		}
+		if (key==39) {
+			player.setDx(3);
+			
+		}
+		
+		if (key==81) {
+			screen 	= 'P';
+		}
 		
 	}
 	
@@ -332,6 +411,16 @@ public int getRandNum() {
 			
 		}
 	}
+	
+	public int getLength() {
+		return BrickList.size();
+
+	}
+	
+	
+	
+	
+	
 		}
 
 	

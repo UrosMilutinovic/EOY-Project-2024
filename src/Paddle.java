@@ -75,10 +75,10 @@ dx=c;
 public void setDy(int c) {
 	dy=c;
 }
-public int getwidth() {
+public int getW() {
 	return width;
 }
-public int getheight() {
+public int getH() {
 	return height;
 }
 
