@@ -13,6 +13,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private double currtime1;
 	private double time1;
 	private Paddle player2;
+	private Paddle player3;
 	private Sound p;
 	private Pictures background;
 	private boolean start;
@@ -41,6 +42,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		time1=System.currentTimeMillis();
 		currtime1=0;
 		player2 = new Paddle(750, 300, 20, 100,0 ,0, Color.BLACK);
+		player3 = new Paddle ();
 		p = new Sound();
 		p2 = new Sound();
 		p2.playmusic("Background music.wav");
@@ -372,7 +374,7 @@ public int getRandNum() {
 			ball.setH(50);
 			
 		}
-		
+		//B
 		if (key==66) {
 			screen ='M';
 		}
@@ -386,7 +388,7 @@ public int getRandNum() {
 			player.setDx(3);
 			
 		}
-		
+		//Q
 		if (key==81) {
 			screen 	= 'P';
 		}

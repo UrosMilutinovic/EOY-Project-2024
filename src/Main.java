@@ -16,7 +16,7 @@ public class Main extends JFrame{
 		Color RoyalBlue = new Color(22,13,193);
 		//sets the new color. Think of the computer picking up a pen
 		//g2d.setColor(ivory);
-		setBackground(RoyalBlue);
+		setBackground(RoyalBlue); 
 		getContentPane().add(play);
 		
 		

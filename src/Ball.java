@@ -20,7 +20,7 @@ public class Ball {
 
 public Ball() {
 	x=300;
-	y=600;
+	y=650;
 	width=30;
 	height=40;
 	dx=1;
