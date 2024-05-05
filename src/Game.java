@@ -10,6 +10,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private BufferedImage back;
 	private Paddle player;
 	private Ball ball;
+	private Ball ball2;
 	private double currtime1;
 	private double time1;
 	private Paddle player2;
@@ -39,10 +40,12 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		key=-1;
 		player = new Paddle(10, 300, 20, 100,0 ,0, Color.BLACK);
 		ball = new Ball(400, 300, 50, 50, 0, 0, Color.CYAN);
+		ball2 = new Ball(400, 400, 50, 50, 0, 0, Color.CYAN);
+
 		time1=System.currentTimeMillis();
 		currtime1=0;
 		player2 = new Paddle(750, 300, 20, 100,0 ,0, Color.BLACK);
-		player3 = new Paddle ();
+		player3 = new Paddle (270, 600, 100, 20, 0, 0, Color.red);
 		p = new Sound();
 		p2 = new Sound();
 		p2.playmusic("Background music.wav");
@@ -198,15 +201,15 @@ public int getRandNum() {
 				g2d.setFont(new Font ("Times New Roman", Font.BOLD, 50));
 				g2d.drawString("Lives: " + lives, 60, 670);
 				
-				g2d.fillOval(ball.getX(), ball.getY(), ball.getW(), ball.getH());
+				g2d.fillOval(ball2.getX(), ball2.getY(), ball2.getW(), ball2.getH());
 
 				for(Brick b: BrickList) {
 					g2d.setColor(b.getCol());
 					g2d.fillRect(b.getX(), b.getY(), b.getW(), b.getH());
 				}
 				
-				collision(); 
-				if (ball.Collision(player)) {
+				collision2(); 
+				if (ball2.Collision(player3)) {
 					//m.playmusic("Pong Sound Effect.wav");
 
 					move();
@@ -215,7 +218,7 @@ public int getRandNum() {
 				
 
 
-				g2d.fillRect(player.getX(), player.getY(), player.getW(), player.getH());
+				g2d.fillRect(player3.getX(), player3.getY(), player3.getW(), player3.getH());
 
 				
 				move();
@@ -233,8 +236,8 @@ public int getRandNum() {
 					g2d.drawString("YOU LOSE", 300, 500);
 				} else if (len2 == 0) {
 					g2d.drawString("YOU WIN", 300, 500);
-					ball.setDx(0);
-					ball.setDy(0);
+					ball2.setDx(0);
+					ball2.setDy(0);
 
 				}
 				
@@ -284,6 +287,21 @@ public int getRandNum() {
 				BrickList.remove(i);
 				System.out.println("collision");
 				ball.setmoveUp();
+				len2 = getLength();
+				//ball.setmovert();
+				return true;
+			}
+		}
+		return false;
+		
+}
+	
+	public boolean collision2() {
+		for(int i=0; i<BrickList.size(); i++) {
+			if(ball2.getY()<= (BrickList.get(i).getY()) && ball2.getX()<=(BrickList.get(i).getX() + BrickList.get(i).getW()) && ball2.getX()+ball2.getW()>=BrickList.get(i).getX())  {
+				BrickList.remove(i);
+				System.out.println("collision2 vc");
+				ball2.setmoveUp();
 				len2 = getLength();
 				//ball.setmovert();
 				return true;
