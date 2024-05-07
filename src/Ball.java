@@ -75,7 +75,7 @@ public void bounce() {
 	if (x<0) {
 		movert=true;
 	}
-	if(x>1000-60) {
+	if(x>800-60) {
 		movert=false;
 	}
 		
@@ -88,7 +88,7 @@ public void bounce() {
 	if(y<0) {
 		moveup=false;
 	}
-	if (y>750-80) {
+	if (y>600-80) {
 		moveup=true;
 	}
 }

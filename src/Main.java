@@ -9,8 +9,8 @@ public class Main extends JFrame{
 	
 	public Main () {
 		super("2 PLAYER PONG GAME");
-		setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
-		//setSize(WIDTH, HEIGHT);
+
+		setSize(WIDTH, HEIGHT);
 		Game play = new Game();
 		((Component) play).setFocusable(true);
 		Color RoyalBlue = new Color(22,13,193);

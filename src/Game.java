@@ -17,6 +17,9 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private Paddle player3;
 	private Sound p;
 	private Pictures background;
+	private Pictures background2;
+	private Pictures background3;
+
 	private boolean start;
 	private Sound p2;
 	private char screen;
@@ -45,7 +48,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		time1=System.currentTimeMillis();
 		currtime1=0;
 		player2 = new Paddle(750, 300, 20, 100,0 ,0, Color.BLACK);
-		player3 = new Paddle (270, 600, 100, 20, 0, 0, Color.red);
+		player3 = new Paddle (270, 570, 100, 20, 0, 0, Color.red);
 		p = new Sound();
 		p2 = new Sound();
 		p2.playmusic("Background music.wav");
@@ -53,7 +56,10 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		score=0;
 		
 		background= new Pictures ("background.png", 0,0, 800, 600);
-		
+		background2= new Pictures ("BrickBrerakerBackground.png", 0,0, 800, 600);
+		background3= new Pictures ("BrickBrerakerBackground.png", 0,0, 800, 600);
+
+
 		start = false;
 		
 		//----------------------------------------------------------------------------------------
@@ -61,7 +67,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		len = 0;
 		len2 = 1;
 		BrickList = setBricks();
-
+		lives = 3;
 		
 		
 		
@@ -73,7 +79,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		int y=0;	
 		for(int i=0; i<5; i++) {
 			int x=20;
-			for (int j=0; j<8; j++) {
+			for (int j=0; j<6; j++) {
 			temp.add( new Brick(x,y,new Color(getRandNum(),getRandNum(),getRandNum() ) ));
 			x+=120;
 			}
@@ -96,8 +102,8 @@ public int getRandNum() {
 			switch(screen) {
 		case 'S':
 			
-			drawStartScreen(g2d);
-			g2d.drawString("KEY" + key, 340, 600);
+g2d.drawImage(new ImageIcon(background3.getPic()).getImage(), background3.getX(), background3.getY(), background3.getwidth(), background3.getheight() , this);
+g2d.drawString("KEY" + key, 340, 600);
 
 			
 			break;
@@ -134,7 +140,7 @@ public int getRandNum() {
 			g2d.drawString("SCORE 2: "+player2.getScore(), 500, 30);
 
 			if (ball.Collision(player)) {
-				p.playmusic("Pong Sound Effect.wav");
+			//	p.playmusic("Pong Sound Effect.wav");
 
 				
 				move();
@@ -142,7 +148,7 @@ public int getRandNum() {
 			}
 			
 			else if (ball.Collision(player2)) {
-				p.playmusic("Pong Sound Effect.wav");
+				//p.playmusic("Pong Sound Effect.wav");
 
 				move();
 
@@ -197,6 +203,11 @@ public int getRandNum() {
 				len = BrickList.size();
 
 				
+				g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);
+
+				g2d.fillRect(player3.getX(), 570, player3.getW(), player3.getH());
+
+				
 				g2d.setColor(Color.BLUE);
 				g2d.setFont(new Font ("Times New Roman", Font.BOLD, 50));
 				g2d.drawString("Lives: " + lives, 60, 670);
@@ -223,13 +234,13 @@ public int getRandNum() {
 				
 				move();
 				
-				if (ball.getY()>660) {
+				if (ball2.getY()>600) {
 					lives--;
-					ball.setX(430);
-					ball.setY(500);
-					ball.setDx(0);
-					ball.setDy(0);
-					ball.setmoveUp();
+					ball2.setX(430);
+					ball2.setY(500);
+					ball2.setDx(0);
+					ball2.setDy(0);
+					ball2.setmoveUp();
 				}
 				
 				if (lives == 0) {
@@ -313,8 +324,12 @@ public int getRandNum() {
 	
 	public void move() {
 		ball.bounce();
+		ball2.bounce();
+
 		player2.keymove();
 		player.keymove();
+		player3.keymove();
+		
 
 	}
 	
@@ -344,22 +359,23 @@ public int getRandNum() {
 			
 		}
 		*/
+		
 		if (key==38) {
 			player2.setDy(-2);
-			
+			// Arrow Up
 		}
 		if (key==40) {
 			player2.setDy(2);
-			
+			// Arrow Down
 		}
 		
 		if (key==87) {
 			player.setDy(-2);
-			
+			// W
 		}
 		if (key==83) {
 			player.setDy(2);
-			
+			// S
 		}
 		if (key==32) {
 			ball.setDx(2);
@@ -368,8 +384,9 @@ public int getRandNum() {
 			time1=System.currentTimeMillis();
 			ball.setW(50);
 			ball.setH(50);
-
-			
+			ball2.setDx(2);
+			ball2.setDy(2);
+			// Spacebar
 		}                 
 		/*
 		if(key == 66) {
@@ -380,6 +397,7 @@ public int getRandNum() {
 		if(key == 86) {
 			ball.setH(100);
 			ball.setW(100);
+			// V
 		}	
 		
 		if (key == 82) {
@@ -391,24 +409,27 @@ public int getRandNum() {
 			ball.setW(50);
 			ball.setH(50);
 			
+			//R
 		}
-		//B
 		if (key==66) {
 			screen ='M';
+			//B
+
 		}
 		
 
 		if (key==37) {
-			player.setDx(-3);
-		
+			player3.setDx(-3);
+		 // Arrow Left
 		}
 		if (key==39) {
-			player.setDx(3);
-			
+			player3.setDx(3);
+			// Arrow Right
 		}
-		//Q
 		if (key==81) {
 			screen 	= 'P';
+			//Q
+
 		}
 		
 	}
@@ -423,12 +444,13 @@ public int getRandNum() {
 		*/
 		if (key==38 || key==40) {
 			player2.setDy(0);
-			
+			// Arrow Up / Arrow Down
 		}
 		
 		if (key==83 || key==87) {
 			player.setDy(0);
 			
+			// S or W
 		}
 	}
 	
