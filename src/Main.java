@@ -8,15 +8,15 @@ public class Main extends JFrame{
 	private static final int HEIGHT=600;
 	
 	public Main () {
-		super("2 PLAYER PONG GAME");
+		super("RETRO PONG");
 
 		setSize(WIDTH, HEIGHT);
 		Game play = new Game();
 		((Component) play).setFocusable(true);
-		Color RoyalBlue = new Color(22,13,193);
+		//Color RoyalBlue = new Color(22,13,193);
 		//sets the new color. Think of the computer picking up a pen
 		//g2d.setColor(ivory);
-		setBackground(RoyalBlue); 
+		//setBackground(RoyalBlue); 
 		getContentPane().add(play);
 		
 		

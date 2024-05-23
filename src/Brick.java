@@ -17,7 +17,7 @@ public Brick() {
 		
 }
 
-public Brick(int xV, int yV, Color c) {
+public Brick(int xV, int yV, int w, int h, Color c) {
 	x=xV;
 	y=yV;
 	col=c;
