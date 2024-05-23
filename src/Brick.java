@@ -4,7 +4,7 @@ public class Brick {
 
 	private int x, y, w, h;
 	private Color col;
-	
+	//test
 	
 
 
