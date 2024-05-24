@@ -93,7 +93,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		for(int i=0; i<5; i++) {
 			int x=20;
 			for (int j=0; j<6; j++) {
-			//temp.add( new Brick(x,y,new Color(getRandNum(),getRandNum(),getRandNum() ) ));
+			temp.add( new Brick(x,y,new Color(getRandNum(),getRandNum(),getRandNum() ) ));
 			x+=120;
 			}
 			y+=70;
@@ -102,6 +102,10 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		break;
 		
 		case 2:
+		break;
+		case 3:
+		break;
+		case 4:
 			
 			for (int i = 0; i < 2; i++) {
 				for (int j=0; j < 2; j++) {
@@ -125,10 +129,13 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	return temp;
 
 	}
-	
-	
-	
-	
+
+	public void drawBricks(Graphics g2d){
+		for(Brick b: BrickList) {
+			g2d.setColor(b.getCol());
+			g2d.fillRect(b.getX(), b.getY(), b.getW(), b.getH());
+		}
+	}
 	
 	int[][] smileyCoordinates = {
             {280, 120, 80, 60},  
@@ -178,6 +185,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 			break;
 			
 		case 'M':
+		g2d.clearRect(0, 0, getSize().width, getSize().height); 
 
 			
 			g2d.drawString("KEY" + key, 340, 600);
@@ -250,11 +258,18 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 			
 			
 			case 'P':
-				
-				//g2d.clearRect(0, ), getSize().width,  getHeigth(), this);
-				len = BrickList.size();
+			g2d.clearRect(0, 0, getSize().width, getSize().height); 
+			g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);
 
-				g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);
+				len2 = BrickList.size();
+
+				level = '1';
+				BrickList = setBricks();
+				drawBricks(g2d);
+				System.out.println(len);
+				System.out.println("BRICKLIST HERE");
+
+
 				g2d.fillRect(player3.getX(), 570, player3.getW(), player3.getH());
 				g2d.setColor(Color.BLUE);
 				g2d.setFont(new Font ("Times New Roman", Font.BOLD, 50));
@@ -283,13 +298,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 					ball2.setmoveUp();
 				}
 				
-				if (lives == 0) {
-					g2d.drawString("YOU LOSE", 300, 500);
-				} else if (len2 == 0) {
-					g2d.drawString("YOU WIN", 300, 500);
-					ball2.setDx(0);
-					ball2.setDy(0);
-				}
+				
 				
 			break;	
 			
@@ -299,6 +308,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 					
 					g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);								
 					
+					level = '1';
 					setBricks();				
 					
 					g2d.fillRect(player3.getX(), 570, player3.getW(), player3.getH());
@@ -338,11 +348,21 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 				
 				break;
 			
-				case'I':
-		
+				case'W':
+				if (lives == 0) {
+					g2d.setColor(Color.BLUE);
+					g2d.drawRect(0,0,1000,1000);
+					g2d.drawString("YOU LOSE", 300, 500);
+				} else if (len2 == 0) {
+					g2d.setColor(Color.RED);
+					g2d.drawRect(0,0,1000,1000);
+					g2d.drawString("YOU WIN", 300, 500);
+					ball2.setDx(0);
+					ball2.setDy(0);
+				}
 					
 				break;
-			case 'K':
+			case 'N':
 				
 				break;
 			}

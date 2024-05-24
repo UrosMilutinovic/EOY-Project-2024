@@ -25,7 +25,14 @@ public Brick(int xV, int yV, int w, int h, Color c) {
 	h=50;
 	
 }
-
+public Brick(int xV, int yV, Color c) {
+	x=xV;
+	y=yV;
+	col=c;
+	w=100;
+	h=50;
+	
+}
 //getters and setters
 
 public int getX() {
