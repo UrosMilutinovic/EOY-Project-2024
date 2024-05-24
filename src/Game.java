@@ -1,3 +1,4 @@
+import javax.management.openmbean.SimpleType;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -32,8 +33,11 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private int score;
 	private boolean collide;
 	private ArrayList <Brick> BrickList;
+
+	private ArrayList <Brick> BrickList1;
 	private ArrayList <Brick> BrickList2;
 	private ArrayList <Brick> BrickList3;
+	private ArrayList <Brick> BrickList4;
 	private int Screen_W;
 	private int Brick_W;
 	private int Brick_H;
@@ -66,7 +70,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		background= new Pictures ("background.png", 0,0, 800, 600);
 		background2= new Pictures ("BrickBrerakerBackground.png", 0,0, 800, 600);
 		background3= new Pictures ("BrickBrerakerBackground.png", 0,0, 800, 600);
-
+		BrickList = setBricks();
 
 		start = false;
 		
@@ -82,6 +86,13 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		Brick_W = 100;
 		Brick_H = 50;
 	
+		//---------------------
+
+		BrickList1=setBricks1();
+		BrickList2=setBricks2();
+		BrickList3=setBricks3();
+		BrickList4=setBricks4();
+
 	}
 		
 	private ArrayList<Brick> setBricks() {
@@ -99,12 +110,45 @@ public class Game extends JPanel implements Runnable, KeyListener{
 			y+=70;
 		}
 		
+
 		break;
 		
 		case 2:
+
+
+
 		break;
+		
 		case 3:
+		temp.add ( new Brick (280, 120, 80, 60, setRandomColor()));
+		temp.add ( new Brick (440, 120, 80, 60, setRandomColor()));
+		temp.add ( new Brick (360, 200, 80, 60, setRandomColor()));
+		temp.add ( new Brick (240, 300, 80, 60, setRandomColor()));
+		temp.add ( new Brick (320, 320, 80, 60, setRandomColor()));
+		temp.add ( new Brick (480, 300, 80, 60, setRandomColor()));
+		temp.add ( new Brick (360, 340, 80, 60, setRandomColor()));
+		temp.add ( new Brick (440, 340, 80, 60, setRandomColor()));
+		temp.add ( new Brick (120, 300, 80, 60, setRandomColor()));
+		temp.add ( new Brick (600, 300, 80, 60, setRandomColor()));
+		temp.add ( new Brick (200, 62, 80, 60, setRandomColor()));
+		temp.add ( new Brick (200, 122, 80, 60, setRandomColor()));
+		temp.add ( new Brick (200, 182, 80, 60, setRandomColor()));
+		temp.add ( new Brick (520, 62, 80, 60, setRandomColor()));
+		temp.add ( new Brick (520, 122, 80, 60, setRandomColor()));
+		temp.add ( new Brick (520, 182, 80, 60, setRandomColor()));
+		temp.add ( new Brick (360, 240, 80, 60, setRandomColor()));
+		temp.add ( new Brick (360, 300, 80, 60, setRandomColor()));
+		temp.add ( new Brick (200, 360, 80, 60, setRandomColor()));
+		temp.add ( new Brick (520, 360, 80, 60, setRandomColor()));
+		temp.add ( new Brick (520, 360, 80, 60, setRandomColor()));
+		temp.add ( new Brick (280, 420, 80, 60, setRandomColor()));
+		temp.add ( new Brick (360, 420, 80, 60, setRandomColor()));
+		temp.add ( new Brick (440, 420, 80, 60, setRandomColor()));
+		
+
+		
 		break;
+		
 		case 4:
 			
 			for (int i = 0; i < 2; i++) {
@@ -137,6 +181,102 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		}
 	}
 	
+	//level 1
+	private ArrayList<Brick> setBricks1() {
+		// TODO Auto-generated method stub
+		ArrayList <Brick> temp1 = new ArrayList <Brick>();
+		int y=0;	
+		for(int i=0; i<5; i++) {
+			int x=20;
+			for (int j=0; j<6; j++) {
+			temp1.add( new Brick(x,y,new Color(getRandNum(),getRandNum(),getRandNum() ) ));
+			x+=120;
+			}
+			y+=70;
+
+		}
+		
+		return temp1;
+	}
+
+	public void drawBricks1(Graphics g2d){
+		for(Brick g: BrickList1) {
+			g2d.setColor(g.getCol());
+			g2d.fillRect(g.getX(), g.getY(), g.getW(), g.getH());
+		}
+	}
+	private ArrayList<Brick> setBricks2() {
+		// TODO Auto-generated method stub
+		ArrayList <Brick> temp2 = new ArrayList <Brick>();
+		int y=0;	
+		for(int i=0; i<3; i++) {
+			int x=20;
+			for (int j=0; j<8; j++) {
+			temp2.add( new Brick(x,y,new Color(getRandNum(),getRandNum(),getRandNum() ) ));
+			x+=120;
+			}
+			y+=170;
+
+		}
+		
+		return temp2;
+	}
+
+	public void drawBricks2(Graphics g2d){
+		for(Brick g: BrickList2) {
+			g2d.setColor(g.getCol());
+			g2d.fillRect(g.getX(), g.getY(), g.getW(), g.getH());
+		}
+	}
+
+	private ArrayList<Brick> setBricks3() {
+		// TODO Auto-generated method stub
+		ArrayList <Brick> temp3 = new ArrayList <Brick>();
+		int y=0;	
+		for(int i=0; i<3; i++) {
+			int x=20;
+			for (int j=0; j<8; j++) {
+			temp3.add( new Brick(x,y,new Color(getRandNum(),getRandNum(),getRandNum() ) ));
+			x+=120;
+			}
+			y+=170;
+
+		}
+		
+		return temp3;
+	}
+
+	public void drawBricks3(Graphics g2d){
+		for(Brick g: BrickList3) {
+			g2d.setColor(g.getCol());
+			g2d.fillRect(g.getX(), g.getY(), g.getW(), g.getH());
+		}
+	}
+
+	private ArrayList<Brick> setBricks4() {
+		// TODO Auto-generated method stub
+		ArrayList <Brick> temp4 = new ArrayList <Brick>();
+		int y=0;	
+		for(int i=0; i<3; i++) {
+			int x=20;
+			for (int j=0; j<8; j++) {
+			temp4.add( new Brick(x,y,new Color(getRandNum(),getRandNum(),getRandNum() ) ));
+			x+=120;
+			}
+			y+=170;
+
+		}
+		
+		return temp4;
+	}
+
+	public void drawBricks4(Graphics g2d){
+		for(Brick g: BrickList4) {
+			g2d.setColor(g.getCol());
+			g2d.fillRect(g.getX(), g.getY(), g.getW(), g.getH());
+		}
+	}
+
 	int[][] smileyCoordinates = {
             {280, 120, 80, 60},  
             {440, 120, 80, 60},  
@@ -162,10 +302,12 @@ public class Game extends JPanel implements Runnable, KeyListener{
             {520, 360, 80, 60},  
             {280, 420, 80, 60},  
             {360, 420, 80, 60}, 
-            {440, 420, 80, 60}   
+            {440, 420, 80, 60}  
             
             
         };
+
+
         
 public int getRandNum() {
 	return (int)(Math.random()*255)+1;
@@ -261,12 +403,14 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 			g2d.clearRect(0, 0, getSize().width, getSize().height); 
 			g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);
 
-				len2 = BrickList.size();
+				
+				drawBricks1(g2d);
+				//level = 1;
+				//BrickList = setBricks();
+				//drawBricks(g2d);
 
-				level = '1';
-				BrickList = setBricks();
-				drawBricks(g2d);
-				System.out.println(len);
+				//len2 = BrickList.size();
+				System.out.println(len2);
 				System.out.println("BRICKLIST HERE");
 
 
@@ -278,7 +422,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 
 				
 				
-				collision2(); 
+				collision1(); 
 				if (ball2.Collision(player3)) {
 					//m.playmusic("Pong Sound Effect.wav");
 					move();
@@ -308,9 +452,9 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 					
 					g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);								
 					
-					level = '1';
-					setBricks();				
 					
+					
+
 					g2d.fillRect(player3.getX(), 570, player3.getW(), player3.getH());
 
 					g2d.setColor(Color.BLUE);
@@ -318,7 +462,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 					g2d.drawString("Lives: " + lives, 60, 670);
 					g2d.fillOval(ball2.getX(), ball2.getY(), ball2.getW(), ball2.getH());
 					
-					collision3(); 
+					collision2(); 
 					if (ball2.Collision(player3)) {
 						//m.playmusic("Pong Sound Effect.wav");
 						move();
@@ -353,7 +497,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 					g2d.setColor(Color.BLUE);
 					g2d.drawRect(0,0,1000,1000);
 					g2d.drawString("YOU LOSE", 300, 500);
-				} else if (len2 == 0) {
+				} else if (BrickList.size() == 0) {
 					g2d.setColor(Color.RED);
 					g2d.drawRect(0,0,1000,1000);
 					g2d.drawString("YOU WIN", 300, 500);
@@ -363,8 +507,39 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 					
 				break;
 			case 'N':
+			level = 3;
+			BrickList = setBricks();
+			drawBricks(g2d);
+			System.out.println("IT SHOULD BE RUNNING");
+
+			g2d.fillRect(player3.getX(), 570, player3.getW(), player3.getH());
+				g2d.setColor(Color.BLUE);
+				g2d.setFont(new Font ("Times New Roman", Font.BOLD, 50));
+				g2d.drawString("Lives: " + lives, 60, 670);
+				g2d.fillOval(ball2.getX(), ball2.getY(), ball2.getW(), ball2.getH());
+
 				
-				break;
+				
+				collision2(); 
+				if (ball2.Collision(player3)) {
+					//m.playmusic("Pong Sound Effect.wav");
+					move();
+
+				}
+
+				g2d.fillRect(player3.getX(), player3.getY(), player3.getW(), player3.getH());
+
+				move();
+				
+				if (ball2.getY()>600) {
+					lives--;
+					ball2.setX(430);
+					ball2.setY(500);
+					ball2.setDx(0);
+					ball2.setDy(0);
+					ball2.setmoveUp();
+				}
+ 				break;
 			}
 		}
 			
@@ -419,10 +594,10 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 		
 }
 	
-	public boolean collision2() {
-		for(int i=0; i<BrickList.size(); i++) {
-			if(ball2.getY()<= (BrickList.get(i).getY()) && ball2.getX()<=(BrickList.get(i).getX() + BrickList.get(i).getW()) && ball2.getX()+ball2.getW()>=BrickList.get(i).getX())  {
-				BrickList.remove(i);
+	public boolean collision1() {
+		for(int i=0; i<BrickList1.size(); i++) {
+			if(ball2.getY()<= (BrickList1.get(i).getY()) && ball2.getX()<=(BrickList1.get(i).getX() + BrickList1.get(i).getW()) && ball2.getX()+ball2.getW()>=BrickList1.get(i).getX())  {
+				BrickList1.remove(i);
 				System.out.println("collision2 vc");
 				ball2.setmoveUp();
 				len2 = getLength();
@@ -433,7 +608,22 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 		return false;
 		
 }
+
+public boolean collision2() {
+	for(int i=0; i<BrickList1.size(); i++) {
+		if(ball2.getY()<= (BrickList1.get(i).getY()) && ball2.getX()<=(BrickList1.get(i).getX() + BrickList1.get(i).getW()) && ball2.getX()+ball2.getW()>=BrickList1.get(i).getX())  {
+			BrickList1.remove(i);
+			System.out.println("collision2 vc");
+			ball2.setmoveUp();
+			len2 = getLength();
+			//ball.setmovert();
+			return true;
+		}
+	}
+	return false;
 	
+}	
+
 	public boolean collision3() {
 		for(int i=0; i<BrickList2.size(); i++) {
 			if(ball2.getY()<= (BrickList.get(i).getY()) && ball2.getX()<=(BrickList.get(i).getX() + BrickList.get(i).getW()) && ball2.getX()+ball2.getW()>=BrickList.get(i).getX())  {
@@ -566,6 +756,10 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 		}
 		if ( key == 90) {
 			// z
+			screen = 'L';
+		}
+		if ( key == 67) {
+			// c
 			screen = 'L';
 		}
 		
