@@ -14,15 +14,15 @@ public Brick() {
 	w=0;
 	h=0;
 	col = Color.blue;
-		
+	
 }
 
 public Brick(int xV, int yV, int w, int h, Color c) {
 	x=xV;
 	y=yV;
 	col=c;
-	w=100;
-	h=30;
+	this.w=w;
+	this.h=h;
 	
 }
 public Brick(int xV, int yV, Color c) {
