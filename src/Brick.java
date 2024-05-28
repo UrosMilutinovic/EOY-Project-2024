@@ -22,7 +22,7 @@ public Brick(int xV, int yV, int w, int h, Color c) {
 	y=yV;
 	col=c;
 	w=100;
-	h=50;
+	h=30;
 	
 }
 public Brick(int xV, int yV, Color c) {
@@ -30,7 +30,7 @@ public Brick(int xV, int yV, Color c) {
 	y=yV;
 	col=c;
 	w=100;
-	h=50;
+	h=30;
 	
 }
 //getters and setters
