@@ -55,7 +55,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private int Brick_H;
 	private int level;
 	private boolean start1;
-	
+	private Pictures HomeBi;
 
 	
 	private Brick b1;
@@ -64,6 +64,8 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		back=null;
 		new Thread(this).start();
 		this.addKeyListener(this);
+
+		HomeBi = new Pictures("Homescreen Background.png", 0,0,785, 560);
 		
 		key=-1;
 		player = new Paddle(10, 300, 20, 100,0 ,0, Color.BLACK);
@@ -368,8 +370,8 @@ public int getRandNum() {
 			else if (player2.getScore() > 4) {
 				g2d.setColor(Color.RED);
 				g2d.drawString("Player 2 Wins!!!", 350, 150);
+
 			}
-			
 			break;
 			
 			
@@ -377,7 +379,8 @@ public int getRandNum() {
 			g2d.clearRect(0, 0, getSize().width, getSize().height); 
 			g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);
 
-				
+			g2d.drawString("LIVES:" + lives2, 50, 480);
+
 				drawBricks1(g2d);
 				//level = 1;
 				//BrickList = setBricks();
@@ -417,7 +420,17 @@ public int getRandNum() {
 					System.out.println("Why is the game not loosing");
 				}
 				
-				
+				if (lives2 == 0) {
+					g2d.setColor(Color.BLUE);
+					g2d.drawRect(0,0,1000,1000);
+					g2d.drawString("YOU LOSE", 300, 500);
+				} else if (BrickList1.size() == 0 || BrickList2.size() == 0 ||BrickList3.size() == 0 || BrickList4.size() == 0) {
+					g2d.setColor(Color.RED);
+					g2d.drawRect(0,0,1000,1000);
+					g2d.drawString("YOU WIN", 300, 500);
+					ball2.setDx(0);
+					ball2.setDy(0);
+				}
 				
 			break;	
 			
@@ -426,7 +439,8 @@ public int getRandNum() {
 					//len3 = BrickList3.size();
 					
 					g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);								
-					
+					g2d.drawString("LIVES:" + lives3, 50, 480);
+
 					
 					drawBricks2(g2d);
 
@@ -466,6 +480,18 @@ public int getRandNum() {
 
 					}
 				 */ 
+
+				 if (lives3 == 0) {
+					g2d.setColor(Color.BLUE);
+					g2d.drawRect(0,0,1000,1000);
+					g2d.drawString("YOU LOSE", 300, 500);
+				} else if (BrickList1.size() == 0 || BrickList2.size() == 0 ||BrickList3.size() == 0 || BrickList4.size() == 0) {
+					g2d.setColor(Color.RED);
+					g2d.drawRect(0,0,1000,1000);
+					g2d.drawString("YOU WIN", 300, 500);
+					ball2.setDx(0);
+					ball2.setDy(0);
+				}
 				break;
 			
 				case'W':
@@ -484,7 +510,7 @@ public int getRandNum() {
 				break;
 			case 'N':
 			g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);								
-
+			g2d.drawString("LIVES:" + lives4, 50, 480);
 			drawBricks3(g2d);
 			//System.out.println("IT SHOULD BE RUNNING");
 
@@ -517,9 +543,26 @@ public int getRandNum() {
 					ball4.setmoveUp();
 
 				}
+
+				if (lives4 == 0) {
+					g2d.setColor(Color.BLUE);
+					g2d.drawRect(0,0,1000,1000);
+					g2d.setColor(Color.WHITE);
+
+					g2d.drawString("YOU LOSE", 300, 500);
+				} else if (BrickList1.size() == 0 || BrickList2.size() == 0 ||BrickList3.size() == 0 || BrickList4.size() == 0) {
+					g2d.setColor(Color.GREEN);
+					g2d.drawRect(0,0,1000,1000);
+					g2d.setColor(Color.WHITE);
+					g2d.drawString("YOU WIN", 300, 500);
+					ball2.setDx(0);
+					ball2.setDy(0);
+				}
+
  				break;
 				 case 'H':
 				 g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);								
+				 g2d.drawString("LIVES:" + lives5, 50, 480);
 
 				 drawBricks4(g2d);
 				// System.out.println("IT SHOULD BE RUNNING case H");
@@ -552,7 +595,18 @@ public int getRandNum() {
 						 ball5.setmoveUp();
 					 }
 
-					 
+					 if (lives5 == 0) {
+						g2d.setColor(Color.BLUE);
+						g2d.drawRect(0,0,1000,1000);
+						g2d.drawString("YOU LOSE", 300, 500);
+					} else if (BrickList1.size() == 0 || BrickList2.size() == 0 ||BrickList3.size() == 0 || BrickList4.size() == 0) {
+						g2d.setColor(Color.RED);
+						g2d.drawRect(0,0,1000,1000);
+						g2d.drawString("YOU WIN", 300, 500);
+						ball2.setDx(0);
+						ball2.setDy(0);
+					}
+
 					  break;
 				 }
 			}
@@ -725,11 +779,8 @@ public boolean collision4() {
 	
 	public void drawStartScreen(Graphics g2d) {
 		//create start screen
-		g2d.setFont(new Font("Broadway", Font.BOLD, 50));
-		g2d.setColor(Color.white);
-		g2d.drawString("Welcome Retro Pong", 200, 400);
-		g2d.drawString("Press B to begin", 200, 600);
-		g2d.drawString("Select the game you want to play!", 200, 800);
+		g2d.drawImage(new ImageIcon(HomeBi.getPic()).getImage(), HomeBi.getX(), HomeBi.getY(), HomeBi.getwidth(), HomeBi.getheight(),this);
+		
 	}
 	
 	
@@ -834,9 +885,18 @@ public boolean collision4() {
 			start1 = true;
 
 			lives = 3;
+			lives2 = 3;
+			lives3 = 3;
+			lives4 = 3;
+			lives5 = 3;
+		 
 
 
-			
+		BrickList1=setBricks1();
+		BrickList2=setBricks2();
+		BrickList3=setBricks3();
+		BrickList4=setBricks4();
+
 			//R
 		}
 		if (key==66) {
