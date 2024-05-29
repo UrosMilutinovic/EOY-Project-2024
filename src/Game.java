@@ -11,7 +11,12 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private BufferedImage back;
 	private Paddle player;
 	private Ball ball;
+
 	private Ball ball2;
+	private Ball ball3;
+	private Ball ball4;
+	private Ball ball5;
+
 	private double currtime1;
 	private double time1;
 	private Paddle player2;
@@ -29,6 +34,8 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private int len;
 	private int len2;
 	private int len3;
+	private int len4;
+	private int len5;
 	private int lives;
 	private int score;
 	private boolean collide;
@@ -57,6 +64,10 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		player = new Paddle(10, 300, 20, 100,0 ,0, Color.BLACK);
 		ball = new Ball(400, 300, 50, 50, 0, 0, Color.CYAN);
 		ball2 = new Ball(400, 400, 50, 50, 0, 0, Color.CYAN);
+		ball3 = new Ball(400, 400, 50, 50, 0, 0, Color.CYAN);
+		ball4 = new Ball(400, 400, 50, 50, 0, 0, Color.CYAN);
+		ball5 = new Ball(400, 400, 50, 50, 0, 0, Color.CYAN);
+
 
 		time1=System.currentTimeMillis();
 		currtime1=0;
@@ -71,7 +82,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		background= new Pictures ("background.png", 0,0, 800, 600);
 		background2= new Pictures ("BrickBrerakerBackground.png", 0,0, 800, 600);
 		background3= new Pictures ("BrickBrerakerBackground.png", 0,0, 800, 600);
-		BrickList = setBricks();
+		//BrickList = setBricks();
 
 		start = false;
 		start1 = true;
@@ -80,7 +91,12 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		//----------------------------------------------------------------------------------------
 		
 		len = 0;
-		BrickList = setBricks();
+		len2 = 0;
+		len3 = 0;
+		len4 =0;
+		len5 = 0;
+
+		//BrickList = setBricks();
 		lives = 3;
 		
 		//-----------------------------------------------------------
@@ -98,85 +114,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
 	}
 		
-	private ArrayList<Brick> setBricks() {
-		// TODO Auto-generated method stub
-		ArrayList <Brick> temp = new ArrayList <Brick>();
-	switch(level) {	
-		case 1:
-		int y=0;	
-		for(int i=0; i<5; i++) {
-			int x=20;
-			for (int j=0; j<6; j++) {
-			temp.add( new Brick(x,y,new Color(getRandNum(),getRandNum(),getRandNum() ) ));
-			x+=120;
-			}
-			y+=70;
-		}
-		
-
-		break;
-		
-		case 2:
-
-
-
-		break;
-		
-		case 3:
-		temp.add ( new Brick (280, 120, 80, 60, setRandomColor()));
-		temp.add ( new Brick (440, 120, 80, 60, setRandomColor()));
-		temp.add ( new Brick (360, 200, 80, 60, setRandomColor()));
-		temp.add ( new Brick (240, 300, 80, 60, setRandomColor()));
-		temp.add ( new Brick (320, 320, 80, 60, setRandomColor()));
-		temp.add ( new Brick (480, 300, 80, 60, setRandomColor()));
-		temp.add ( new Brick (360, 340, 80, 60, setRandomColor()));
-		temp.add ( new Brick (440, 340, 80, 60, setRandomColor()));
-		temp.add ( new Brick (120, 300, 80, 60, setRandomColor()));
-		temp.add ( new Brick (600, 300, 80, 60, setRandomColor()));
-		temp.add ( new Brick (200, 62, 80, 60, setRandomColor()));
-		temp.add ( new Brick (200, 122, 80, 60, setRandomColor()));
-		temp.add ( new Brick (200, 182, 80, 60, setRandomColor()));
-		temp.add ( new Brick (520, 62, 80, 60, setRandomColor()));
-		temp.add ( new Brick (520, 122, 80, 60, setRandomColor()));
-		temp.add ( new Brick (520, 182, 80, 60, setRandomColor()));
-		temp.add ( new Brick (360, 240, 80, 60, setRandomColor()));
-		temp.add ( new Brick (360, 300, 80, 60, setRandomColor()));
-		temp.add ( new Brick (200, 360, 80, 60, setRandomColor()));
-		temp.add ( new Brick (520, 360, 80, 60, setRandomColor()));
-		temp.add ( new Brick (520, 360, 80, 60, setRandomColor()));
-		temp.add ( new Brick (280, 420, 80, 60, setRandomColor()));
-		temp.add ( new Brick (360, 420, 80, 60, setRandomColor()));
-		temp.add ( new Brick (440, 420, 80, 60, setRandomColor()));
-		
-
-		
-		break;
-		
-		case 4:
-			
-		for (int i = 0; i < 2; i++) {
-			for (int j=0; j < 2; j++) {
-				temp.add ( new Brick (4 * Brick_W + Brick_W *i, 3*Brick_H + 5*j* Brick_H, Brick_W - 5, Brick_H-5, setRandomColor()));
-				temp.add ( new Brick (3 * Brick_W + Brick_W *3*i, 2*Brick_H + 5*j*Brick_H, Brick_W - 5, Brick_H-5, setRandomColor()));
-				temp.add ( new Brick (2* Brick_W + Brick_W *5*i, 3*Brick_H + 3*j*Brick_H, Brick_W - 5, Brick_H -5, setRandomColor()));
-				temp.add ( new Brick (Brick_W + Brick_W *7 *i, 4*Brick_H + j*Brick_H, Brick_W - 5, Brick_H-5, setRandomColor()));
-
-			}
-			
-		}
-		
-		for(int i=0;i<2;i++) {
-			temp.add (new Brick((Screen_W - Brick_W)/2, 4* Brick_W +5*i*Brick_H, Brick_W - 5, Brick_W - 5, setRandomColor()));
-		}
-		
-		break;
-
-	}
 	
-	return temp;
-
-	}
-
 	public void drawBricks(Graphics g2d){
 		for(Brick b: BrickList) {
 			g2d.setColor(b.getCol());
@@ -486,10 +424,10 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 					g2d.setColor(Color.BLUE);
 					g2d.setFont(new Font ("Times New Roman", Font.BOLD, 50));
 					g2d.drawString("Lives: " + lives, 60, 670);
-					g2d.fillOval(ball2.getX(), ball2.getY(), ball2.getW(), ball2.getH());
+					g2d.fillOval(ball3.getX(), ball3.getY(), ball3.getW(), ball3.getH());
 					
-					collision2(); 
-					if (ball2.Collision(player3)) {
+					collision1(); 
+					if (ball3.Collision(player3)) {
 						//m.playmusic("Pong Sound Effect.wav");
 						move();
 					}
@@ -498,13 +436,13 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 
 					move();
 					
-					if (ball2.getY()>600) {
+					if (ball3.getY()>600) {
 						lives--;
-						ball2.setX(430);
-						ball2.setY(500);
-						ball2.setDx(0);
-						ball2.setDy(0);
-						ball2.setmoveUp();
+						ball3.setX(430);
+						ball3.setY(500);
+						ball3.setDx(0);
+						ball3.setDy(0);
+						ball3.setmoveUp();
 					}
 					/*
 					if (lives == 0) {
@@ -542,12 +480,12 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 				g2d.setColor(Color.BLUE);
 				g2d.setFont(new Font ("Times New Roman", Font.BOLD, 50));
 				g2d.drawString("Lives: " + lives, 60, 670);
-				g2d.fillOval(ball2.getX(), ball2.getY(), ball2.getW(), ball2.getH());
+				g2d.fillOval(ball4.getX(), ball4.getY(), ball4.getW(), ball4.getH());
 
 				
 				
-				collision2(); 
-				if (ball2.Collision(player3)) {
+				collision1(); 
+				if (ball4.Collision(player3)) {
 					//m.playmusic("Pong Sound Effect.wav");
 					move();
 
@@ -557,13 +495,13 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 
 				move();
 				
-				if (ball2.getY()>600) {
+				if (ball4.getY()>600) {
 					lives--;
-					ball2.setX(430);
-					ball2.setY(500);
-					ball2.setDx(0);
-					ball2.setDy(0);
-					ball2.setmoveUp();
+					ball4.setX(430);
+					ball4.setY(500);
+					ball4.setDx(0);
+					ball4.setDy(0);
+					ball4.setmoveUp();
 				}
  				break;
 				 case 'H':
@@ -576,12 +514,12 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 					 g2d.setColor(Color.BLUE);
 					 g2d.setFont(new Font ("Times New Roman", Font.BOLD, 50));
 					 g2d.drawString("Lives: " + lives, 60, 670);
-					 g2d.fillOval(ball2.getX(), ball2.getY(), ball2.getW(), ball2.getH());
+					 g2d.fillOval(ball5.getX(), ball5.getY(), ball5.getW(), ball5.getH());
 	 
 					 
 					 
-					 collision2(); 
-					 if (ball2.Collision(player3)) {
+					 collision1(); 
+					 if (ball5.Collision(player3)) {
 						 //m.playmusic("Pong Sound Effect.wav");
 						 move();
 	 
@@ -591,13 +529,13 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 	 
 					 move();
 					 
-					 if (ball2.getY()>600) {
+					 if (ball5.getY()>600) {
 						 lives--;
-						 ball2.setX(430);
-						 ball2.setY(500);
-						 ball2.setDx(0);
-						 ball2.setDy(0);
-						 ball2.setmoveUp();
+						 ball5.setX(430);
+						 ball5.setY(500);
+						 ball5.setDx(0);
+						 ball5.setDy(0);
+						 ball5.setmoveUp();
 					 }
 
 					 
@@ -650,6 +588,10 @@ if(start1){
 			screen = 'H';
 			start1 = false;
 		}
+		else if (key == 53 & start1){
+			screen = 'M';
+			start1 = false;
+		}
 }
 else
 {
@@ -661,14 +603,14 @@ else
 		//This line tells the program to draw everything above. If you delete this, nothing will show up		twoDgraph.drawImage(back, 0, 0, null);
 	twoDgraph.drawImage(back, 0, 0, null);
 	}
-
+/* 
 	public boolean collision() {
 		for(int i=0; i<BrickList.size(); i++) {
 			if(ball.getY()<= (BrickList.get(i).getY()) && ball.getX()<=(BrickList.get(i).getX() + BrickList.get(i).getW()) && ball.getX()+ball.getW()>=BrickList.get(i).getX())  {
 				BrickList.remove(i);
 				System.out.println("collision");
 				ball.setmoveUp();
-				len2 = getLength();
+				len = getLength();
 				//ball.setmovert();
 				return true;
 			}
@@ -676,7 +618,8 @@ else
 		return false;
 		
 }
-	
+*/
+	//lvl 1
 	public boolean collision1() {
 		for(int i=0; i<BrickList1.size(); i++) {
 			if(ball2.getY()<= (BrickList1.get(i).getY()) && ball2.getX()<=(BrickList1.get(i).getX() + BrickList1.get(i).getW()) && ball2.getX()+ball2.getW()>=BrickList1.get(i).getX())  {
@@ -691,14 +634,14 @@ else
 		return false;
 		
 }
-
+	//lvl 2
 public boolean collision2() {
-	for(int i=0; i<BrickList1.size(); i++) {
-		if(ball2.getY()<= (BrickList1.get(i).getY()) && ball2.getX()<=(BrickList1.get(i).getX() + BrickList1.get(i).getW()) && ball2.getX()+ball2.getW()>=BrickList1.get(i).getX())  {
+	for(int i=0; i<BrickList2.size(); i++) {
+		if(ball3.getY()<= (BrickList2.get(i).getY()) && ball3.getX()<=(BrickList2.get(i).getX() + BrickList2.get(i).getW()) && ball3.getX()+ball3.getW()>=BrickList2.get(i).getX())  {
 			BrickList1.remove(i);
 			System.out.println("collision2 vc");
-			ball2.setmoveUp();
-			len2 = getLength();
+			ball3.setmoveUp();
+			len3 = getLength();
 			//ball.setmovert();
 			return true;
 		}
@@ -706,20 +649,35 @@ public boolean collision2() {
 	return false;
 	
 }	
-
+	//lvl 3
 	public boolean collision3() {
-		for(int i=0; i<BrickList2.size(); i++) {
-			if(ball2.getY()<= (BrickList2.get(i).getY()) && ball2.getX()<=(BrickList2.get(i).getX() + BrickList2.get(i).getW()) && ball2.getX()+ball2.getW()>=BrickList2.get(i).getX())  {
-				BrickList2.remove(i);
+		for(int i=0; i<BrickList3.size(); i++) {
+			if(ball4.getY()<= (BrickList3.get(i).getY()) && ball4.getX()<=(BrickList3.get(i).getX() + BrickList3.get(i).getW()) && ball4.getX()+ball4.getW()>=BrickList3.get(i).getX())  {
+				BrickList3.remove(i);
 				System.out.println("collision3 happen");
-				ball2.setmoveUp();
-				len3 = getLength();
+				ball4.setmoveUp();
+				len4 = getLength();
 				//ball.setmovert();
 				return true;
 			}
 		}
 		return false;
 		
+}
+//lvl 4
+public boolean collision4() {
+	for(int i=0; i<BrickList2.size(); i++) {
+		if(ball5.getY()<= (BrickList4.get(i).getY()) && ball5.getX()<=(BrickList4.get(i).getX() + BrickList4.get(i).getW()) && ball5.getX()+ball5.getW()>=BrickList4.get(i).getX())  {
+			BrickList2.remove(i);
+			System.out.println("collision3 happen");
+			ball5.setmoveUp();
+			len5 = getLength();
+			//ball.setmovert();
+			return true;
+		}
+	}
+	return false;
+	
 }
 	
 
@@ -792,7 +750,6 @@ public boolean collision2() {
 		}
 		if (key==82) {
 		//R
-		start1 = true;
 		
 		}
 
@@ -805,6 +762,16 @@ public boolean collision2() {
 			ball.setH(50);
 			ball2.setDx(2);
 			ball2.setDy(2);
+
+			ball3.setDx(2);
+			ball3.setDy(2);
+
+			ball4.setDx(2);
+			ball4.setDy(2);
+
+			ball5.setDx(2);
+			ball5.setDy(2);
+
 			// Spacebar
 		}                 
 		
@@ -818,10 +785,36 @@ public boolean collision2() {
 			ball.setDx(0);
 			ball.setDy(0);
 			ball.setX(365);
+
+			ball2.setDx(0);
+			ball2.setDy(0);
+			ball2.setX(418);
+			ball2.setY(375);
+
+			ball3.setDx(0);
+			ball3.setDy(0);
+			ball3.setX(418);
+			ball3.setY(375);
+
+			ball4.setDx(0);
+			ball4.setDy(0);
+			ball4.setX(418);
+			ball4.setY(375);
+
+			ball5.setDx(0);
+			ball5.setDy(0);
+			ball5.setX(418);
+			ball5.setY(375);
+
 			player.resetScore(0);
 			player2.resetScore(0);
 			ball.setW(50);
 			ball.setH(50);
+			start1 = true;
+
+			lives = 3;
+
+
 			
 			//R
 		}
@@ -868,6 +861,11 @@ public boolean collision2() {
 		}
 		if (key==83 || key==87) {
 			player.setDy(0);
+			
+			// S or W
+		}
+		if (key==37 || key==39) {
+			player3.setDx(0);
 			
 			// S or W
 		}
