@@ -93,6 +93,33 @@ public void bounce() {
 	}
 }
 
+public void bounce1() {
+	if (movert) {
+		x=x+dx;
+	}
+	else x-=dx;
+	
+	if (x<0) {
+		movert=true;
+	}
+	if(x>800-60) {
+		movert=false;
+	}
+		
+	if (moveup) 
+		{y=y-dy;
+	}
+	else y+=dy;
+	
+	
+	if(y<0) {
+		moveup=false;
+	}
+	if (y>600-80) {
+		moveup=true;
+	}
+}
+
 public int getX() {
 	return x;
 }

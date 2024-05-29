@@ -37,6 +37,11 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private int len4;
 	private int len5;
 	private int lives;
+	private int lives2;
+	private int lives3;
+	private int lives4;
+	private int lives5;
+
 	private int score;
 	private boolean collide;
 	private ArrayList <Brick> BrickList;
@@ -98,6 +103,11 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
 		//BrickList = setBricks();
 		lives = 3;
+		lives2 = 3;
+		lives3 = 3;
+		lives4 = 3;
+		lives5 = 3;
+
 		
 		//-----------------------------------------------------------
 		
@@ -228,7 +238,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
 
 
-				System.out.println("These work");
+				//System.out.println("These work");
 		return temp4;
 	}
 
@@ -237,7 +247,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		for(Brick g: BrickList4) {
 			g2d.setColor(g.getCol());
 			g2d.fillRect(g.getX(), g.getY(), g.getW(), g.getH());
-			System.out.println(g.getX() + " y "+ g.getY()+ " w"+ g.getW());
+			//System.out.println(g.getX() + " y "+ g.getY()+ " w"+ g.getW());
 		}
 	}
 
@@ -279,14 +289,14 @@ public int getRandNum() {
 	
 		//collide=false;
 		public void screen(Graphics g2d) {
-			System.out.println(screen);
+			//System.out.println(screen);
 			switch(screen) {
 		case 'S':
 			
 //g2d.drawImage(new ImageIcon(background3.getPic()).getImage(), background3.getX(), background3.getY(), background3.getwidth(), background3.getheight() , this);
-g2d.drawString("KEY" + key, 340, 600);
-g2d.setFont(new Font("chiller",Font.BOLD, 30) );
-g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
+	g2d.drawString("KEY" + key, 340, 600);
+	g2d.setFont(new Font("chiller",Font.BOLD, 30) );
+	g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 			
 			break;
 			
@@ -305,7 +315,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 			g2d.setColor(Color.BLACK);
 			g2d.setFont(new Font("",Font.BOLD, 50) );
 			g2d.drawString(new DecimalFormat("#0.00").format(currtime1),350,550);
-			System.out.println(key);
+			//System.out.println(key);
 			
 			if (start) {
 			currtime1= (System.currentTimeMillis()-time1)/1000;
@@ -374,8 +384,8 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 				//drawBricks(g2d);
 
 				//len2 = BrickList.size();
-				System.out.println(len2);
-				System.out.println("BRICKLIST HERE");
+				//System.out.println(len2);
+				//System.out.println("BRICKLIST HERE");
 
 
 				g2d.fillRect(player3.getX(), 570, player3.getW(), player3.getH());
@@ -397,13 +407,14 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 
 				move();
 				
-				if (ball2.getY()>600) {
-					lives--;
+				if (ball2.getY() > 600-80) {
+					lives2--;
 					ball2.setX(430);
-					ball2.setY(500);
+					ball2.setY(400);
 					ball2.setDx(0);
 					ball2.setDy(0);
 					ball2.setmoveUp();
+					System.out.println("Why is the game not loosing");
 				}
 				
 				
@@ -426,7 +437,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 					g2d.drawString("Lives: " + lives, 60, 670);
 					g2d.fillOval(ball3.getX(), ball3.getY(), ball3.getW(), ball3.getH());
 					
-					collision1(); 
+					collision2(); 
 					if (ball3.Collision(player3)) {
 						//m.playmusic("Pong Sound Effect.wav");
 						move();
@@ -436,14 +447,15 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 
 					move();
 					
-					if (ball3.getY()>600) {
-						lives--;
+					if (ball3.getY() > 600-80) {
+						lives3--;
 						ball3.setX(430);
-						ball3.setY(500);
+						ball3.setY(400);
 						ball3.setDx(0);
 						ball3.setDy(0);
 						ball3.setmoveUp();
 					}
+					
 					/*
 					if (lives == 0) {
 						g2d.drawString("YOU LOSE", 300, 500);
@@ -474,7 +486,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 			g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);								
 
 			drawBricks3(g2d);
-			System.out.println("IT SHOULD BE RUNNING");
+			//System.out.println("IT SHOULD BE RUNNING");
 
 			g2d.fillRect(player3.getX(), 570, player3.getW(), player3.getH());
 				g2d.setColor(Color.BLUE);
@@ -484,7 +496,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 
 				
 				
-				collision1(); 
+				collision3(); 
 				if (ball4.Collision(player3)) {
 					//m.playmusic("Pong Sound Effect.wav");
 					move();
@@ -495,20 +507,22 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 
 				move();
 				
-				if (ball4.getY()>600) {
-					lives--;
+				if (ball4.getY() > 600-80) {
+					lives4--;
 					ball4.setX(430);
-					ball4.setY(500);
+					ball4.setY(400);
 					ball4.setDx(0);
 					ball4.setDy(0);
 					ball4.setmoveUp();
+					ball4.setmoveUp();
+
 				}
  				break;
 				 case 'H':
 				 g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);								
 
 				 drawBricks4(g2d);
-				 System.out.println("IT SHOULD BE RUNNING case H");
+				// System.out.println("IT SHOULD BE RUNNING case H");
 	 
 				 g2d.fillRect(player3.getX(), 570, player3.getW(), player3.getH());
 					 g2d.setColor(Color.BLUE);
@@ -518,7 +532,7 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 	 
 					 
 					 
-					 collision1(); 
+					 collision4(); 
 					 if (ball5.Collision(player3)) {
 						 //m.playmusic("Pong Sound Effect.wav");
 						 move();
@@ -529,10 +543,10 @@ g2d.drawString("Press ___ to play Multiplayer - Easy", 30, 40);
 	 
 					 move();
 					 
-					 if (ball5.getY()>600) {
-						 lives--;
+					 if (ball5.getY() > 600-80) {
+						 lives5--;
 						 ball5.setX(430);
-						 ball5.setY(500);
+						 ball5.setY(400);
 						 ball5.setDx(0);
 						 ball5.setDy(0);
 						 ball5.setmoveUp();
@@ -585,8 +599,10 @@ if(start1){
 			start1 = false;
 
 		}else if (key == 52 & start1){
+			System.out.println(key);
 			screen = 'H';
 			start1 = false;
+			System.out.println("HEART SHOULD BE HERE");
 		}
 		else if (key == 53 & start1){
 			screen = 'M';
@@ -624,7 +640,7 @@ else
 		for(int i=0; i<BrickList1.size(); i++) {
 			if(ball2.getY()<= (BrickList1.get(i).getY()) && ball2.getX()<=(BrickList1.get(i).getX() + BrickList1.get(i).getW()) && ball2.getX()+ball2.getW()>=BrickList1.get(i).getX())  {
 				BrickList1.remove(i);
-				System.out.println("collision2 vc");
+				//System.out.println("collision2 vc");
 				ball2.setmoveUp();
 				len2 = getLength();
 				//ball.setmovert();
@@ -638,8 +654,8 @@ else
 public boolean collision2() {
 	for(int i=0; i<BrickList2.size(); i++) {
 		if(ball3.getY()<= (BrickList2.get(i).getY()) && ball3.getX()<=(BrickList2.get(i).getX() + BrickList2.get(i).getW()) && ball3.getX()+ball3.getW()>=BrickList2.get(i).getX())  {
-			BrickList1.remove(i);
-			System.out.println("collision2 vc");
+			BrickList2.remove(i);
+			//System.out.println("collision2 vc");
 			ball3.setmoveUp();
 			len3 = getLength();
 			//ball.setmovert();
@@ -654,7 +670,7 @@ public boolean collision2() {
 		for(int i=0; i<BrickList3.size(); i++) {
 			if(ball4.getY()<= (BrickList3.get(i).getY()) && ball4.getX()<=(BrickList3.get(i).getX() + BrickList3.get(i).getW()) && ball4.getX()+ball4.getW()>=BrickList3.get(i).getX())  {
 				BrickList3.remove(i);
-				System.out.println("collision3 happen");
+				//System.out.println("collision3 happen");
 				ball4.setmoveUp();
 				len4 = getLength();
 				//ball.setmovert();
@@ -666,10 +682,10 @@ public boolean collision2() {
 }
 //lvl 4
 public boolean collision4() {
-	for(int i=0; i<BrickList2.size(); i++) {
+	for(int i=0; i<BrickList4.size(); i++) {
 		if(ball5.getY()<= (BrickList4.get(i).getY()) && ball5.getX()<=(BrickList4.get(i).getX() + BrickList4.get(i).getW()) && ball5.getX()+ball5.getW()>=BrickList4.get(i).getX())  {
-			BrickList2.remove(i);
-			System.out.println("collision3 happen");
+			BrickList4.remove(i);
+			//System.out.println("collision3 happen");
 			ball5.setmoveUp();
 			len5 = getLength();
 			//ball.setmovert();
@@ -685,6 +701,11 @@ public boolean collision4() {
 	public void move() {
 		ball.bounce();
 		ball2.bounce();
+		ball3.bounce();
+		ball4.bounce();
+		ball5.bounce();
+
+
 
 		player2.keymove();
 		player.keymove();
@@ -720,7 +741,7 @@ public boolean collision4() {
 	
 	public void keyPressed(KeyEvent e) {
 		key=e.getKeyCode();
-		System.out.println(key);
+		//System.out.println(key);
 		/*
 		if (key==39) {
 			player.setDx(2);
