@@ -908,6 +908,9 @@ public boolean collision4() {
 		BrickList3=setBricks3();
 		BrickList4=setBricks4();
 
+			player.resetScore(0);
+			player2.resetScore(0);
+
 			//R
 		}
 		if (key==66) {
