@@ -57,6 +57,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 	private boolean start1;
 	private Pictures HomeBi;
 
+
 	
 	private Brick b1;
 	
@@ -123,6 +124,11 @@ public class Game extends JPanel implements Runnable, KeyListener{
 		BrickList2=setBricks2();
 		BrickList3=setBricks3();
 		BrickList4=setBricks4();
+
+		//----------------------------------------
+
+		p2 = new Sound();
+		p2.playmusic("Background music.wav");
 
 	}
 		
