@@ -378,8 +378,9 @@ public int getRandNum() {
 			case 'P':
 			g2d.clearRect(0, 0, getSize().width, getSize().height); 
 			g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);
-
-			g2d.drawString("LIVES:" + lives2, 50, 480);
+			
+			g2d.setFont(new Font ("Times New Roman", Font.BOLD, 25));
+			g2d.drawString("LIVES:" + lives2, 50, 550);
 
 				drawBricks1(g2d);
 				//level = 1;
@@ -394,7 +395,7 @@ public int getRandNum() {
 				g2d.fillRect(player3.getX(), 570, player3.getW(), player3.getH());
 				g2d.setColor(Color.BLUE);
 				g2d.setFont(new Font ("Times New Roman", Font.BOLD, 50));
-				g2d.drawString("Lives: " + lives, 60, 670);
+				//g2d.drawString("Lives: " + lives, 60, 500);
 				g2d.fillOval(ball2.getX(), ball2.getY(), ball2.getW(), ball2.getH());
 
 				
@@ -439,7 +440,8 @@ public int getRandNum() {
 					//len3 = BrickList3.size();
 					
 					g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);								
-					g2d.drawString("LIVES:" + lives3, 50, 480);
+					g2d.setFont(new Font ("Times New Roman", Font.BOLD, 25));
+					g2d.drawString("LIVES:" + lives3, 50, 550);
 
 					
 					drawBricks2(g2d);
@@ -447,7 +449,7 @@ public int getRandNum() {
 					g2d.fillRect(player3.getX(), 570, player3.getW(), player3.getH());
 
 					g2d.setColor(Color.BLUE);
-					g2d.setFont(new Font ("Times New Roman", Font.BOLD, 50));
+					g2d.setFont(new Font ("Times New Roman", Font.BOLD, 100));
 					g2d.drawString("Lives: " + lives, 60, 670);
 					g2d.fillOval(ball3.getX(), ball3.getY(), ball3.getW(), ball3.getH());
 					
@@ -510,7 +512,9 @@ public int getRandNum() {
 				break;
 			case 'N':
 			g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);								
-			g2d.drawString("LIVES:" + lives4, 50, 480);
+			g2d.setFont(new Font ("Times New Roman", Font.BOLD, 25));
+			g2d.drawString("LIVES:" + lives4, 50, 550);
+
 			drawBricks3(g2d);
 			//System.out.println("IT SHOULD BE RUNNING");
 
@@ -562,7 +566,8 @@ public int getRandNum() {
  				break;
 				 case 'H':
 				 g2d.drawImage(new ImageIcon(background2.getPic()).getImage(), background2.getX(), background2.getY(), background2.getwidth(), background2.getheight() , this);								
-				 g2d.drawString("LIVES:" + lives5, 50, 480);
+				 g2d.setFont(new Font ("Times New Roman", Font.BOLD, 25));
+				 g2d.drawString("LIVES:" + lives5, 50, 550);
 
 				 drawBricks4(g2d);
 				// System.out.println("IT SHOULD BE RUNNING case H");
